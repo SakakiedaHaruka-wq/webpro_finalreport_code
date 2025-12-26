@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= monster.name %> の詳細</title>
+    <style>
+        body { font-family: "Hiragino Maru Gothic ProN", sans-serif; background: #f9f9f9; padding: 20px; }
+        .card { background: #fff; padding: 30px; border: 1px solid #ddd; max-width: 800px; margin: 0 auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { border-bottom: 2px solid #d9534f; padding-bottom: 10px; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 15px; border-bottom: 1px solid #eee; text-align: left; }
+        th { width: 30%; background: #f8f8f8; color: #555; }
+        .desc { white-space: pre-wrap; line-height: 1.8; color: #444; }
+        .btn-group { text-align: center; margin-top: 30px; }
+        .btn { padding: 10px 20px; text-decoration: none; border-radius: 4px; margin: 0 10px; color: white; }
+        .btn-edit { background: #28a745; }
+        .btn-back { background: #6c757d; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>No.<%= monster.id %> <%= monster.name %></h1>
+    
+    <table>
+        <tr><th>種族</th> <td><%= monster.species %></td></tr>
+        <tr><th>サイズ</th> <td><%= monster.size %> cm</td></tr>
+        <tr><th>弱点</th> <td><%= monster.weakness %></td></tr>
+        <tr><th>咆哮</th> <td><%= monster.roar %></td></tr>
+        <tr><th>風圧</th> <td><%= monster.wind %></td></tr>
+        <tr><th>振動</th> <td><%= monster.tremor %></td></tr>
+        <tr>
+            <th>生態・特徴</th>
+            <td class="desc"><%= monster.description %></td>
+        </tr>
+    </table>
+
+    <div class="btn-group">
+        <a href="/mh" class="btn btn-back">一覧に戻る</a>
+        <a href="/mh_edit?id=<%= index %>" class="btn btn-edit">情報を変更する</a>
+    </div>
+</div>
+
+</body>
+</html>

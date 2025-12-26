@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ポケモンを追加</title>
+
+<style>
+/* -----------------------------------
+全体の見やすさ設定
+----------------------------------- */
+body {
+font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+background-color: #f9f9f9;
+color: #333;
+padding: 20px;
+}
+
+/* タイトルを中央に */
+h1 {
+text-align: center;
+margin-top: 30px;
+margin-bottom: 30px;
+}
+
+/* -----------------------------------
+表（テーブル）のデザイン
+----------------------------------- */
+table {
+width: 100%;
+border-collapse: collapse;
+background-color: #fff;
+margin-bottom: 20px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 少し影をつけて浮き上がらせる */
+}
+th, td {
+padding: 12px;
+border: 1px solid #ddd;
+text-align: center;
+vertical-align: middle;
+}
+th {
+background-color: #eee;
+width: 30%; /* ラベルの幅 */
+}
+
+/* -----------------------------------
+入力欄のデザイン（ここが重要！）
+----------------------------------- */
+input[type="number"], input[type="text"] {
+font-size: 16px;
+padding: 10px;
+width: 80%; /* 幅を広くとる */
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box; /* パディングを含めた幅計算 */
+}
+
+/* 数字は右寄せ（桁がわかりやすい） */
+input[type="number"] {
+text-align: right;
+}
+/* 名前は左寄せ */
+input[type="text"] {
+text-align: left;
+}
+
+/* -----------------------------------
+ボタンのデザイン
+----------------------------------- */
+input[type="submit"], .btn {
+display: inline-block;
+padding: 12px 40px; /* 少し大きめに */
+font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+background-color: #007bff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none;
+margin: 5px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+transition: 0.3s;
+}
+
+input[type="submit"]:hover, .btn:hover {
+background-color: #0056b3;
+transform: translateY(-2px);
+}
+
+/* 戻るボタン（グレー） */
+.btn-gray {
+background-color: #6c757d;
+padding: 10px 20px;
+font-size: 14px;
+}
+.btn-gray:hover {
+background-color: #5a6268;
+}
+</style>
+</head>
+<body>
+<h1>新しいポケモンを追加</h1>
+<div style="max-width: 800px; margin: 0 auto;"> <form action="/pokemon_add">
+<table>
+<tr>
+<th>項目</th>
+<th>入力内容</th>
+</tr>
+
+<tr>
+<th>図鑑No <span style="color:red; font-size:0.8em;">(必須)</span></th>
+<td><input type="number" name="id" required placeholder="例：25"></td>
+</tr>
+<tr>
+<th>名前 <span style="color:red; font-size:0.8em;">(必須)</span></th>
+<td><input type="text" name="name" required placeholder="例：ピカチュウ"></td>
+</tr>
+
+<tr><th>H (HP)</th> <td><input type="number" name="h" value="0"></td></tr>
+<tr><th>A (こうげき)</th> <td><input type="number" name="a" value="0"></td></tr>
+<tr><th>B (ぼうぎょ)</th> <td><input type="number" name="b" value="0"></td></tr>
+<tr><th>C (とくこう)</th> <td><input type="number" name="c" value="0"></td></tr>
+<tr><th>D (とくぼう)</th> <td><input type="number" name="d" value="0"></td></tr>
+<tr><th>S (すばやさ)</th> <td><input type="number" name="s" value="0"></td></tr>
+</table>
+<div style="text-align: center; margin-top: 20px;">
+<input type="submit" value="この内容で登録する">
+</div>
+</form>
+
+<div style="text-align: center; margin-top: 30px;">
+<a href="/pokemon" class="btn btn-gray">＜ 一覧に戻る</a>
+</div>
+
+</div>
+</body>
+</html>

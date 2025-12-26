@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>課題情報の編集</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background: #eef2f5; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; }
+        h1 { text-align: center; color: #2c3e50; }
+        input, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        label { font-weight: bold; color: #555; display: block; margin-bottom: 5px; }
+        .btn { width: 100%; padding: 12px; background: #2ecc71; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        .back { display: block; text-align: center; margin-top: 15px; color: #888; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>登録内容の変更</h1>
+    <form action="/task_update">
+        <input type="hidden" name="index" value="<%= index %>">
+
+        <label>科目名</label>
+        <input type="text" name="subject" value="<%= task.subject %>">
+
+        <label>課題タイトル</label>
+        <input type="text" name="title" value="<%= task.title %>">
+
+        <label>提出期限</label>
+        <input type="date" name="deadline" value="<%= task.deadline %>">
+
+        <label>重要度</label>
+        <select name="priority">
+            <option value="<%= task.priority %>" selected>現在の設定: <%= task.priority %></option>
+            <option value="★">★</option>
+            <option value="★★">★★</option>
+            <option value="★★★">★★★</option>
+            <option value="★★★★">★★★★</option>
+            <option value="★★★★★">★★★★★</option>
+        </select>
+
+        <label>進捗状況</label>
+        <select name="status">
+            <option value="<%= task.status %>" selected>現在の設定: <%= task.status %></option>
+            <option value="未着手">未着手</option>
+            <option value="進行中">進行中</option>
+            <option value="完了">完了</option>
+        </select>
+
+        <label>メモ</label>
+        <textarea name="memo" rows="5" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"><%= task.memo %></textarea>
+
+        <input type="submit" value="変更を保存" class="btn">
+    </form>
+    <a href="/task" class="back">キャンセル</a>
+</div>
+
+</body>
+</html>

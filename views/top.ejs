@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Webプログラミング 最終課題</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background: #f0f2f5; padding: 40px; text-align: center; color: #333; }
+        h1 { margin-bottom: 40px; color: #2c3e50; }
+        
+        .container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        
+        .card { 
+            background: white; 
+            width: 300px; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        h2 { font-size: 20px; margin-bottom: 15px; color: #34495e; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        p { font-size: 14px; color: #7f8c8d; height: 60px; }
+
+        .btn { 
+            display: inline-block; 
+            width: 100%; 
+            padding: 12px 0; 
+            margin-top: 10px; 
+            text-decoration: none; 
+            color: white; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            box-sizing: border-box;
+        }
+
+        /* 色分け */
+        .btn-poke { background-color: #e74c3c; } /* 赤 */
+        .btn-mh   { background-color: #27ae60; } /* 緑 */
+        .btn-task { background-color: #3498db; } /* 青 */
+        
+        .footer { margin-top: 50px; color: #bdc3c7; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>Webプログラミング 最終課題制作物</h1>
+    <p style="margin-bottom: 40px;">以下の3つのWebアプリケーションを制作しました。</p>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2>1. ポケモン図鑑</h2>
+            <p>数値パラメータの比較・管理を中心としたデータベースです。</p>
+            <a href="/pokemon" class="btn btn-poke">図鑑を見る</a>
+        </div>
+
+        <div class="card">
+            <h2>2. モンハン図鑑</h2>
+            <p>長文説明や生態情報を管理する、読み物形式の図鑑です。</p>
+            <a href="/mh" class="btn btn-mh">図鑑を見る</a>
+        </div>
+
+        <div class="card">
+            <h2>3. 課題管理アプリ</h2>
+            <p>日付管理、進捗ステータス、メモ機能を備えた実用ツールです。</p>
+            <a href="/task" class="btn btn-task">アプリを使う</a>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Student ID: [25G1054] / Name: [榊枝遼]
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>情報の変更</title>
+    <style>
+        body { font-family: "Hiragino Maru Gothic ProN", sans-serif; background: #f9f9f9; padding: 20px; }
+        .info-card { background: #fff; padding: 20px; border: 1px solid #ddd; text-align: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; background: #fff; margin-bottom: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        th { background: #eee; width: 30%; }
+        input[type="text"], input[type="number"], textarea { width: 90%; padding: 8px; font-size: 16px; }
+        
+        /* ボタンのデザイン */
+        .btn { 
+            padding: 15px 40px; font-size: 20px; font-weight: bold;
+            background: #007bff; color: #fff; border: none; 
+            border-radius: 5px; cursor: pointer; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn:hover { background-color: #0056b3; transform: translateY(-2px); }
+        .btn-gray { padding: 10px 20px; background: #6c757d; color: #fff; text-decoration: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <h1><%= monster.name %> の情報を変更</h1>
+    </div>
+    
+    <form action="/mh_update">
+        <input type="hidden" name="index" value="<%= index %>">
+
+        <table>
+            <tr><th>項目</th><th>設定値</th></tr>
+            
+            <tr><th>名前</th> <td><input type="text" name="name" value="<%= monster.name %>"></td></tr>
+            <tr><th>種族</th> <td><input type="text" name="species" value="<%= monster.species %>"></td></tr>
+            <tr><th>サイズ(cm)</th> <td><input type="number" name="size" value="<%= monster.size %>"></td></tr>
+            <tr><th>弱点</th> <td><input type="text" name="weakness" value="<%= monster.weakness %>"></td></tr>
+            <tr><th>咆哮</th> <td><input type="text" name="roar" value="<%= monster.roar %>"></td></tr>
+            <tr><th>風圧</th> <td><input type="text" name="wind" value="<%= monster.wind %>"></td></tr>
+            
+            <tr><th>振動</th> <td><input type="text" name="tremor" value="<%= monster.tremor %>"></td></tr>
+            <tr>
+                <th>説明</th>
+                <td><textarea name="description" rows="5"><%= monster.description %></textarea></td>
+            </tr>
+        </table>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <input type="submit" value="変更内容を保存する" class="btn">
+        </div>
+    </form>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/mh" class="btn-gray">＜ 一覧に戻る</a>
+    </div>
+
+</body>
+</html>

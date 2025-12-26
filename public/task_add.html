@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新規課題の登録</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background: #eef2f5; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 15px; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #34495e; }
+        
+        /* ★ここに textarea を追加して、デザインを統一しました */
+        input[type="text"], input[type="number"], input[type="date"], select, textarea {
+            width: 100%; padding: 12px; font-size: 16px; border: 1px solid #bdc3c7; border-radius: 4px; box-sizing: border-box;
+        }
+        
+        /* メモ欄専用のスタイル（文字サイズなど） */
+        textarea {
+            resize: vertical; /* 縦方向には手動でも伸ばせるようにする */
+            line-height: 1.5;
+        }
+        
+        .btn { display: block; width: 100%; padding: 15px; background: #3498db; color: white; font-size: 18px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; margin-top: 30px; }
+        .btn:hover { background: #2980b9; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #7f8c8d; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>新規課題登録</h1>
+
+    <form action="/task_add">
+        <div class="form-group">
+            <label>管理ID</label>
+            <input type="number" name="id" required placeholder="例: 10">
+        </div>
+
+        <div class="form-group">
+            <label>科目名</label>
+            <input type="text" name="subject" required placeholder="例: Webプログラミング">
+        </div>
+
+        <div class="form-group">
+            <label>課題タイトル</label>
+            <input type="text" name="title" required placeholder="例: 最終レポート提出">
+        </div>
+
+        <div class="form-group">
+            <label>提出期限 (Deadline)</label>
+            <input type="date" name="deadline" required>
+        </div>
+
+        <div class="form-group">
+            <label>重要度</label>
+            <select name="priority">
+                <option value="★">★ (低)</option>
+                <option value="★★">★★</option>
+                <option value="★★★" selected>★★★ (中)</option>
+                <option value="★★★★">★★★★</option>
+                <option value="★★★★★">★★★★★ (高)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>進捗状況</label>
+            <select name="status">
+                <option value="未着手">未着手</option>
+                <option value="進行中">進行中</option>
+                <option value="完了">完了</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>メモ (Memo)</label>
+            <textarea name="memo" rows="10" placeholder="参考文献や進め方などのメモ...&#13;&#10;（URLや先生のアドバイスなど）"></textarea>
+        </div>
+
+        <input type="submit" value="リストに追加" class="btn">
+    </form>
+
+    <a href="/task" class="back-link">キャンセル</a>
+</div>
+
+</body>
+</html>

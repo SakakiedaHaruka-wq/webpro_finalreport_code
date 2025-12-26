@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>種族値の変更</title>
+
+    <style>
+        /* -----------------------------------
+           全体の見やすさ設定
+        ----------------------------------- */
+        body {
+            font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* -----------------------------------
+           情報カード（上部の白枠部分）
+        ----------------------------------- */
+        .info-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .total-score {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007bff; /* 青文字で強調 */
+            margin-top: 10px;
+        }
+
+        /* -----------------------------------
+           表（テーブル）のデザイン
+        ----------------------------------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center; /* 文字を真ん中に */
+        }
+        th {
+            background-color: #eee;
+            width: 30%; /* ラベルの幅を固定 */
+        }
+
+        /* 入力欄のデザイン */
+        input[type="number"], input[type="text"] {
+            font-size: 16px;
+            padding: 8px;
+            width: 80%; /* 幅を広げる */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: right; /* 数字を右寄せ */
+        }
+        /* 名前入力は左寄せ */
+        input[name="name"] {
+            text-align: left;
+        }
+
+        /* -----------------------------------
+           ボタンのデザイン
+        ----------------------------------- */
+        input[type="submit"], .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover, .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-gray {
+            background-color: #6c757d;
+            font-size: 14px; /* 戻るボタンは少し小さく */
+            padding: 10px 20px;
+        }
+        .btn-gray:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <h1><%= pokemon.name %> の種族値を変更</h1>
+        
+        <div class="total-score">
+            現在の合計種族値: 
+            <%= Number(pokemon.h) + Number(pokemon.a) + Number(pokemon.b) + Number(pokemon.c) + Number(pokemon.d) + Number(pokemon.s) %>
+        </div>
+    </div>
+    
+    <form action="/pokemon_update">
+        <input type="hidden" name="index" value="<%= index %>">
+
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>設定値</th>
+            </tr>
+            
+            <tr>
+                <th>図鑑No</th>
+                <td>
+                    <input type="number" name="id" value="<%= pokemon.id %>" readonly style="background-color: #f0f0f0; border:none;">
+                </td>
+            </tr>
+
+            <tr>
+                <th>名前</th>
+                <td><input type="text" name="name" value="<%= pokemon.name %>"></td>
+            </tr>
+
+            <tr><th>H (HP)</th>       <td><input type="number" name="h" value="<%= pokemon.h %>"></td></tr>
+            <tr><th>A (こうげき)</th> <td><input type="number" name="a" value="<%= pokemon.a %>"></td></tr>
+            <tr><th>B (ぼうぎょ)</th> <td><input type="number" name="b" value="<%= pokemon.b %>"></td></tr>
+            <tr><th>C (とくこう)</th> <td><input type="number" name="c" value="<%= pokemon.c %>"></td></tr>
+            <tr><th>D (とくぼう)</th> <td><input type="number" name="d" value="<%= pokemon.d %>"></td></tr>
+            <tr><th>S (すばやさ)</th> <td><input type="number" name="s" value="<%= pokemon.s %>"></td></tr>
+        </table>
+        
+        <div style="text-align: center;">
+            <input type="submit" value="変更内容を保存する">
+        </div>
+    </form>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/pokemon" class="btn btn-gray">＜ 一覧に戻る</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ポケモンの種族値データ</title>
+
+    <style>
+        /* -----------------------------------
+           全体の設定
+        ----------------------------------- */
+        body {
+            font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* -----------------------------------
+           情報カード（上部の白枠部分）
+        ----------------------------------- */
+        .info-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .total-score {
+            font-size: 1.4em; /* 少し大きく */
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 10px;
+        }
+
+        /* -----------------------------------
+           表（テーブル）のデザイン
+        ----------------------------------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center; /* 文字を真ん中に */
+        }
+        th {
+            background-color: #eee;
+            width: 40%;
+        }
+
+        /* -----------------------------------
+           ボタンのデザイン
+        ----------------------------------- */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-gray {
+            background-color: #6c757d;
+        }
+        .btn-gray:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-card">
+        <h1>図鑑No.<%= pokemon.id%>：<%= pokemon.name %></h1>
+        
+        <div class="total-score">
+            種族値合計: 
+            <%= Number(pokemon.h) + Number(pokemon.a) + Number(pokemon.b) + Number(pokemon.c) + Number(pokemon.d) + Number(pokemon.s) %>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th>ステータス名</th>
+            <th>数値</th>
+        </tr>
+        <tr> <th>H (HP)</th>       <td><%= pokemon.h %></td> </tr>
+        <tr> <th>A (こうげき)</th> <td><%= pokemon.a %></td> </tr>
+        <tr> <th>B (ぼうぎょ)</th> <td><%= pokemon.b %></td> </tr>
+        <tr> <th>C (とくこう)</th> <td><%= pokemon.c %></td> </tr>
+        <tr> <th>D (とくぼう)</th> <td><%= pokemon.d %></td> </tr>
+        <tr> <th>S (すばやさ)</th> <td><%= pokemon.s %></td> </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <a href="/pokemon" class="btn btn-gray">＜ 一覧に戻る</a>
+    </div>
+</body>
+</html>

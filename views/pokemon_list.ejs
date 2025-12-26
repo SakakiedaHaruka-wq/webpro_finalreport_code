@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ポケモン種族値一覧：ホーム</title>
+    
+    <style>
+        /* -----------------------------------
+           全体の設定
+        ----------------------------------- */
+        body {
+            font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th { background-color: #eee; }
+
+        /* -----------------------------------
+           ボタンのデザイン
+        ----------------------------------- */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        
+        /* 大きい登録ボタン */
+        .btn-large {
+            font-size: 18px;
+            padding: 15px 40px;
+            margin-bottom: 30px;
+            background-color: #28a745;
+        }
+        .btn-large:hover { background-color: #218838; }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-red { background-color: #dc3545; }
+        .btn-red:hover { background-color: #a71d2a; }
+
+        /* ▼▼▼ 追加：ホームに戻るボタンのデザイン ▼▼▼ */
+        .btn-home {
+            background-color: #6c757d; /* 落ち着いたグレー */
+            margin-bottom: 20px;
+        }
+        .btn-home:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    
+    <div style="margin-bottom: 20px;">
+        <a href="/" class="btn btn-home">🏠 ホーム画面に戻る</a>
+    </div>
+    <h1>ポケモン：種族値登録</h1>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+            ようこそ！本サイトはポケモンの種族値を追加、管理するwebサイトです！<br>
+            ゆっくりしていってね〜
+        </p>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="/public/pokemon_add.html" class="btn btn-large">
+            ＋ 新しいポケモンを追加する
+        </a>
+    </div>
+    
+    <table>
+        <tr>
+            <th>図鑑No</th> <th>名前</th>
+            <th>種族値合計</th> <th>操作</th>
+        </tr>
+
+        <% let i = 0 %>
+
+        <% for (let row of data) { %>
+        <tr>
+            <td><%= row.id %></td>
+            <td>
+                <strong><%= row.name %></strong>
+                <% if (locals.newId && row.id == newId) { %>
+                    <span style="color: red; font-weight: bold; margin-left: 10px; font-size: 0.8em;">New!!</span>
+                <% } %>
+            </td>
+            <td style="font-weight: bold; color: #555;">
+                <%= Number(row.h) + Number(row.a) + Number(row.b) + Number(row.c) + Number(row.d) + Number(row.s) %>
+            </td>
+            <td>
+                <a href="/pokemon_detail?id=<%= i %>" class="btn">詳細</a>
+                <a href="/pokemon_edit?id=<%= i %>" class="btn">変更</a>
+                <a href="/pokemon_delete?id=<%= i %>" class="btn btn-red" onclick="return confirm('本当に削除しますか？');">削除</a>
+            </td>
+        </tr>
+        <% i = i + 1 %>
+        <% } %>
+    </table>
+</body>
+</html>
