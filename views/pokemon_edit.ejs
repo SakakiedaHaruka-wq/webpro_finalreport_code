@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>種族値の変更</title>
-
     <style>
-        /* -----------------------------------
-           全体の見やすさ設定
-        ----------------------------------- */
         body {
             font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
             background-color: #f9f9f9;
             color: #333;
             padding: 20px;
         }
-
-        /* -----------------------------------
-           情報カード（上部の白枠部分）
-        ----------------------------------- */
         .info-card {
             background-color: #fff;
             padding: 20px;
@@ -27,17 +19,12 @@
             text-align: center;
             border: 1px solid #ddd;
         }
-        
         .total-score {
             font-size: 1.2em;
             font-weight: bold;
-            color: #007bff; /* 青文字で強調 */
+            color: #007bff;
             margin-top: 10px;
         }
-
-        /* -----------------------------------
-           表（テーブル）のデザイン
-        ----------------------------------- */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -47,30 +34,23 @@
         th, td {
             padding: 12px;
             border: 1px solid #ddd;
-            text-align: center; /* 文字を真ん中に */
+            text-align: center;
         }
         th {
             background-color: #eee;
-            width: 30%; /* ラベルの幅を固定 */
+            width: 30%;
         }
-
-        /* 入力欄のデザイン */
         input[type="number"], input[type="text"] {
             font-size: 16px;
             padding: 8px;
-            width: 80%; /* 幅を広げる */
+            width: 80%;
             border: 1px solid #ccc;
             border-radius: 4px;
-            text-align: right; /* 数字を右寄せ */
+            text-align: right;
         }
-        /* 名前入力は左寄せ */
         input[name="name"] {
             text-align: left;
         }
-
-        /* -----------------------------------
-           ボタンのデザイン
-        ----------------------------------- */
         input[type="submit"], .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -86,15 +66,13 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: 0.3s;
         }
-
         input[type="submit"]:hover, .btn:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
         }
-
         .btn-gray {
             background-color: #6c757d;
-            font-size: 14px; /* 戻るボタンは少し小さく */
+            font-size: 14px;
             padding: 10px 20px;
         }
         .btn-gray:hover {

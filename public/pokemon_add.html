@@ -5,97 +5,82 @@
 <title>ポケモンを追加</title>
 
 <style>
-/* -----------------------------------
-全体の見やすさ設定
------------------------------------ */
 body {
-font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
-background-color: #f9f9f9;
-color: #333;
-padding: 20px;
+    font-family: "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
 }
 
-/* タイトルを中央に */
 h1 {
-text-align: center;
-margin-top: 30px;
-margin-bottom: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-/* -----------------------------------
-表（テーブル）のデザイン
------------------------------------ */
 table {
-width: 100%;
-border-collapse: collapse;
-background-color: #fff;
-margin-bottom: 20px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 少し影をつけて浮き上がらせる */
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 th, td {
-padding: 12px;
-border: 1px solid #ddd;
-text-align: center;
-vertical-align: middle;
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
 }
 th {
-background-color: #eee;
-width: 30%; /* ラベルの幅 */
+    background-color: #eee;
+    width: 30%;
 }
 
-/* -----------------------------------
-入力欄のデザイン（ここが重要！）
------------------------------------ */
 input[type="number"], input[type="text"] {
-font-size: 16px;
-padding: 10px;
-width: 80%; /* 幅を広くとる */
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box; /* パディングを含めた幅計算 */
+    font-size: 16px;
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-/* 数字は右寄せ（桁がわかりやすい） */
 input[type="number"] {
-text-align: right;
-}
-/* 名前は左寄せ */
-input[type="text"] {
-text-align: left;
+    text-align: right;
 }
 
-/* -----------------------------------
-ボタンのデザイン
------------------------------------ */
+input[type="text"] {
+    text-align: left;
+}
+
 input[type="submit"], .btn {
-display: inline-block;
-padding: 12px 40px; /* 少し大きめに */
-font-size: 16px;
-font-weight: bold;
-color: #ffffff;
-background-color: #007bff;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-text-decoration: none;
-margin: 5px;
-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-transition: 0.3s;
+    display: inline-block;
+    padding: 12px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
 }
 
 input[type="submit"]:hover, .btn:hover {
-background-color: #0056b3;
-transform: translateY(-2px);
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-/* 戻るボタン（グレー） */
 .btn-gray {
-background-color: #6c757d;
-padding: 10px 20px;
-font-size: 14px;
+    background-color: #6c757d;
+    padding: 10px 20px;
+    font-size: 14px;
 }
 .btn-gray:hover {
-background-color: #5a6268;
+    background-color: #5a6268;
 }
 </style>
 </head>

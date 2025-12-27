@@ -1,4 +1,4 @@
-"use strict"; // 【条件1クリア】
+"use strict";
 
 const express = require("express");
 const app = express();
@@ -7,10 +7,9 @@ app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
-    res.render('top'); // views/top.ejs を表示する
+    res.render('top');
 });
 
-// データ　ポケモン
 let pokemons = [
     { id: 3,   name: "フシギバナ", h:80,  a:82,  b:83,  c:100, d:100, s:80 },
     { id: 6,   name: "リザードン", h:78,  a:84,  b:78,  c:109, d:85,  s:100 },
@@ -27,15 +26,7 @@ let pokemons = [
     { id: 151, name: "ミュウ",     h:100, a:100, b:100, c:100, d:100, s:100 },
 ];
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// データ　モンハン4G
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 let monsters = [
-// ID: 1 ゴア・マガラ
     {
         id: 1,
         name: "ゴア・マガラ",
@@ -69,7 +60,6 @@ let monsters = [
         tremor: "なし",
         description: "《空の王者》の異名で恐れられる、モンスターハンターの世界を代表する大型の飛竜。鮮やかな赤色の甲殻と巨大な翼を持ち、飛行能力に特化した進化を遂げている。\n\n上空からの急襲を得意とし、高高度から獲物を狙って滑空し、鋭い爪で拘束する。その爪には強力な猛毒が含まれており、生半可な装備のハンターであれば一撃で致命傷を負う。さらに、体内には火炎袋を持ち、口から高熱の火炎ブレスを吐き出して辺り一面を焦土と化す。\n\n縄張り意識が極めて強く、侵入者に対しては執拗なまでに攻撃を加えて排除しようとする。雌個体である「リオレイア」と共に狩りを行う姿も目撃されており、つがいでの連携攻撃は脅威そのもの。\n\n多くのハンターにとって、本種を単独で狩猟できるようになることが一人前への登竜門とされている。"
     },
-// ID: 4 ティガレックス
     {
         id: 4,
         name: "ティガレックス",
@@ -81,7 +71,6 @@ let monsters = [
         tremor: "あり",
         description: "《轟竜》の名で知られる、原始的な骨格を残した凶暴な飛竜種。「絶対強者」とも称され、砂漠、雪山、密林など場所を選ばず獲物を求めて世界中を放浪する。\n\n飛行能力は退化しているが、その分四肢が強靭に発達しており、地上での運動能力は全モンスター中でもトップクラス。時速50kmを超える猛スピードで突進し、ドリフトしながら獲物を追い詰める姿は「走る凶器」と例えられる。\n\n最大の特徴はその咆哮であり、強靭な肺活量から繰り出される「轟音」は、至近距離では物理的な衝撃波となってハンターを吹き飛ばし、鼓膜はおろか岩盤すらも破壊する威力を持つ。\n\n怒り状態になると全身の血管が拡張して赤く染まり、防御を捨てて攻撃力と速度を極限まで高める。好物のポポを捕食するためなら、本来苦手とする寒冷地にも出没する貪欲さを持つ。"
     },
-// ID: 5 ジンオウガ
     {
         id: 5,
         name: "ジンオウガ",
@@ -93,7 +82,6 @@ let monsters = [
         tremor: "なし",
         description: "《雷狼竜》の異名を持つ、山岳地帯に生息する牙竜種。強靭な四肢と鋭い爪を持ち、その動きは「無双の狩人」と称されるほど俊敏かつアクロバティックである。\n\n単体での発電能力は低いが、周囲に生息する「雷光虫」を集める習性を持ち、彼らと共生することで膨大な電気エネルギーを得ている。戦闘中に隙を見ては雷光虫をチャージし、電力が最大まで溜まると「超帯電状態」へと移行する。\n\n超帯電状態では全身の帯電毛が逆立ち、金色の雷光を纏って攻撃力とスピードが飛躍的に向上する。サマーソルトや回転攻撃など、狼のような野性味と洗練された体術を組み合わせた連撃でハンターを翻弄する。\n\nかつて霊峰を住処としていたが、ある古龍の影響で追われ、ユクモ村近隣の渓流に姿を現すようになったという経緯を持つ。"
     },
-// ID: 6 ディアブロス
     {
         id: 6,
         name: "ディアブロス",
@@ -124,45 +112,27 @@ let monsters = [
         weakness: "龍/火", 
         roar: "大", 
         wind: "無",
-        tremor: "あり", // 巨体による振動
+        tremor: "あり",
         description: "ドンドルマ近郊に突如現れた正体不明の超大型古龍種。《巨戟龍（きょげきりゅう）》の異名を持ち、ハンターズギルドが確認した個体は背中に一本の「撃龍槍」が刺さっているのが最大の特徴。\n\n全長約50mという巨体を誇り、全身から「超重質龍骨油」と呼ばれる重油のような粘液を垂れ流している。この油は冷えれば強固な鎧となり、獲物を絡め取る罠ともなるが、ゴグマジオス自身の高熱器官によって引火・爆発させる攻撃手段としても用いられる。\n\n非常に珍しい「火薬や硫黄を食べる」という食性を持ち、ドンドルマの武器庫を襲撃したのも火薬を摂取するためであった。油の粘着性により、襲撃した砦の兵器や人工物を身体に付着させながら移動する姿は、さながら「戦禍の亡霊」や「動く城塞」のように恐れられている。"
     },
 ];
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 課題・レポート管理アプリ編
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// データ（初期データ）
 let tasks = [
-    { id: 1, subject: "Webプログラミング", title: "期末課題レポート", deadline: "2025-12-28", priority: "★★★★★", status: "進行中" ,memo:"リンクはGithubに登録すること"},
+    { id: 1, subject: "Webプログラミング", title: "期末課題レポート", deadline: "2025-12-28", priority: "★★★★★", status: "進行中" ,memo:"コードはGithubに登録すること"},
     { id: 2, subject: "倫理学",            title: "人工妊娠中絶についてのレポート",  deadline: "2025-12-31", priority: "★★★★★",     status: "未着手" ,memo:"参考文献調べる"},
-    { id: 3, subject: "データ通信",      title: "再試験対策", deadline: "2026-01-13", priority: "★★★",    status: "未着手" ,memo:"13回は範囲外"},
-    { id: 4, subject: "データサイエンス",        title: "期末課題レポート",   deadline: "2025-12-23", priority: "★",      status: "完了" ,memo:"提出完了"}
+    { id: 3, subject: "データ通信",      title: "再試験対策", deadline: "2026-01-13", priority: "★★★",    status: "未着手" ,memo:"13回は範囲外、注意"},
+    { id: 4, subject: "データサイエンス",        title: "期末課題レポート",   deadline: "2025-12-23", priority: "★",      status: "完了" ,memo:"提出完了、S欲しかったけど爪が甘かった…"}
 ];
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//ポケモン編
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// 1. 一覧表示
-// 一覧表示：URLに「newId」があったら画面に渡す
 app.get("/pokemon", (req, res) => {
-    let newId = req.query.newId; // 追加された直後のIDを受け取る
+    let newId = req.query.newId;
     res.render('pokemon_list', { data: pokemons, newId: newId });
 });
 
-// 2. 詳細表示 (講義資料 P.14 準拠)
-// 配列の添字(インデックス)を使ってデータを取得します
 app.get("/pokemon_detail", (req, res) => {
-    let index = req.query.id; // ここに来るのは配列の添字（0, 1, 2...）
-    let target = pokemons[index]; // 【講義方式】直接指定 [cite: 108]
+    let index = req.query.id;
+    let target = pokemons[index];
     
-    // データがあれば表示
     if(target) {
         res.render('pokemon_detail', { pokemon: target, index: index });
     } else {
@@ -170,10 +140,8 @@ app.get("/pokemon_detail", (req, res) => {
     }
 });
 
-// 3. 追加機能 (講義資料 P.15 準拠)
-// 追加機能：追加後にソートし、ID付きでリダイレクトする
 app.get("/pokemon_add", (req, res) => {
-    let newId = Number(req.query.id); // 新しいIDを記録しておく
+    let newId = Number(req.query.id);
     pokemons.push({
         id: newId,
         name: req.query.name,
@@ -185,39 +153,31 @@ app.get("/pokemon_add", (req, res) => {
         s: Number(req.query.s)
     });
 
-    // ★ここでID順に並び替える魔法 (小さい順)
     pokemons.sort((a, b) => a.id - b.id);
 
-    // 一覧画面に戻る際、?newId=152 のようにIDをくっつけて送る
     res.redirect('/pokemon?newId=' + newId);
 });
 
-// 4. 削除機能 (講義資料 P.15 準拠)
 app.get("/pokemon_delete", (req, res) => {
-    let index = req.query.id; // 削除したい配列の添字
-    // 【講義方式】spliceを使って「何番目」を削除する [cite: 110]
+    let index = req.query.id;
     pokemons.splice(index, 1); 
     res.redirect('/pokemon');
 });
 
-// 編集画面の表示 (講義資料 P.16 準拠)
 app.get("/pokemon_edit", (req, res) => {
     let index = req.query.id;
-    let target = pokemons[index]; // 【講義方式】直接指定 [cite: 112]
+    let target = pokemons[index];
     
     if (target) {
-        // 何番目を編集しているか（index）も画面に渡す
         res.render('pokemon_edit', { pokemon: target, index: index });
     } else {
         res.redirect('/pokemon');
     }
 });
 
-// 5. 変更機能 (講義資料 P.16 準拠)
 app.get("/pokemon_update", (req, res) => {
-    let index = req.query.index; // 隠しフィールドから受け取った「何番目か」
+    let index = req.query.index;
     
-    // 【講義方式】配列の添字を指定して上書きする [cite: 113]
     if (pokemons[index]) {
         pokemons[index].name = req.query.name;
         pokemons[index].h = Number(req.query.h);
@@ -226,47 +186,29 @@ app.get("/pokemon_update", (req, res) => {
         pokemons[index].c = Number(req.query.c);
         pokemons[index].d = Number(req.query.d);
         pokemons[index].s = Number(req.query.s);
-        // IDは変更しない（講義資料でもID変更の記述はないため）
     }
     res.redirect('/pokemon');
 });
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//モンスターハンター4G編
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// モンハン用のデータ配列 (まだなければ定義)
-// let monsters = [...]; 
-
-// 1. 一覧表示
 app.get("/mh", (req, res) => {
     let newId = req.query.newId;
-    // ★ pokemons ではなく monsters を渡す
     res.render('mh_list', { data: monsters, newId: newId });
 });
 
-// 2. 詳細表示
 app.get("/mh_detail", (req, res) => {
     let index = req.query.id;
-    // ★ monsters から探す
     let target = monsters[index]; 
     
     if(target) {
-        // ★ ejs側でも <%= monster.name %> と使えるように名前を変える
         res.render('mh_detail', { monster: target, index: index });
     } else {
         res.redirect('/mh');
     }
 });
 
-// 3. 追加機能
 app.get("/mh_add", (req, res) => {
     let newId = Number(req.query.id);
     
-    // ★ monsters に push する
-    // ★ 項目もモンハン用に変える！
     monsters.push({
         id: newId,
         name: req.query.name,
@@ -275,28 +217,23 @@ app.get("/mh_add", (req, res) => {
         weakness: req.query.weakness,
         roar: req.query.roar,
         wind: req.query.wind,
-        tremor: req.query.tremor, // ★ここを追加！
+        tremor: req.query.tremor,
         description: req.query.description
     });
 
-    // ★ monsters をソートする
     monsters.sort((a, b) => a.id - b.id);
 
     res.redirect('/mh?newId=' + newId);
 });
 
-// 4. 削除機能
 app.get("/mh_delete", (req, res) => {
     let index = req.query.id;
-    // ★ monsters から削除
     monsters.splice(index, 1); 
     res.redirect('/mh');
 });
 
-// 編集画面
 app.get("/mh_edit", (req, res) => {
     let index = req.query.id;
-    // ★ monsters から取得
     let target = monsters[index];
     
     if (target) {
@@ -306,11 +243,9 @@ app.get("/mh_edit", (req, res) => {
     }
 });
 
-// 5. 変更機能
 app.get("/mh_update", (req, res) => {
     let index = req.query.index;
     
-    // ★ monsters を更新
     if (monsters[index]) {
         monsters[index].name = req.query.name;
         monsters[index].species = req.query.species;
@@ -324,21 +259,11 @@ app.get("/mh_update", (req, res) => {
     res.redirect('/mh');
 });
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 課題・レポート管理アプリ編
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// データ（初期データ）
-
-// 1. 一覧表示
 app.get("/task", (req, res) => {
     let newId = req.query.newId;
     res.render('task_list', { data: tasks, newId: newId });
 });
 
-// 2. 詳細表示
 app.get("/task_detail", (req, res) => {
     let index = req.query.id;
     let target = tasks[index];
@@ -349,7 +274,6 @@ app.get("/task_detail", (req, res) => {
     }
 });
 
-// 3. 追加機能
 app.get("/task_add", (req, res) => {
     let newId = Number(req.query.id);
     tasks.push({
@@ -359,21 +283,18 @@ app.get("/task_add", (req, res) => {
         deadline: req.query.deadline,
         priority: req.query.priority,
         status: req.query.status,
-        memo: req.query.memo // ★ここを追加！
+        memo: req.query.memo
     });
-    // ID順にソート
     tasks.sort((a, b) => a.id - b.id);
     res.redirect('/task?newId=' + newId);
 });
 
-// 4. 削除機能
 app.get("/task_delete", (req, res) => {
     let index = req.query.id;
     tasks.splice(index, 1);
     res.redirect('/task');
 });
 
-// 編集画面
 app.get("/task_edit", (req, res) => {
     let index = req.query.id;
     let target = tasks[index];
@@ -384,7 +305,6 @@ app.get("/task_edit", (req, res) => {
     }
 });
 
-// 5. 変更機能
 app.get("/task_update", (req, res) => {
     let index = req.query.index;
     if (tasks[index]) {
@@ -393,7 +313,7 @@ app.get("/task_update", (req, res) => {
         tasks[index].deadline = req.query.deadline;
         tasks[index].priority = req.query.priority;
         tasks[index].status = req.query.status;
-        tasks[index].memo = req.query.memo; // ★ここを追加！
+        tasks[index].memo = req.query.memo;
     }
     res.redirect('/task');
 });
